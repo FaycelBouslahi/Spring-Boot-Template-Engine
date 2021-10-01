@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,21 @@ public class UserController {
         model.addAttribute("list", lst);
         return "demo2";
     }
+
+    // Spring Boot Template Engine - Thymeleaf - Scoop
+
+    @RequestMapping("demo3")
+    public String demo3(HttpServletRequest request, Model model) {
+        // Request
+        request.setAttribute("request", "request data");
+        // Session
+        request.getSession().setAttribute("session", "session data");
+        // Application
+        request.getSession().getServletContext().setAttribute("application", "application data");
+        return "demo2";
+    }
+
+    // Spring Boot Template Engine - Thymeleaf - Condition
 
     private String convertGPA(double grade) {
         if (grade >= 19) {
